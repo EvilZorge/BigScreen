@@ -1,7 +1,7 @@
-/*! BigScreen
- * v2.0.5 - 2015-05-02
+/*! bigscreen
+ * v2.0.5 - 2018-04-08
  * 
- * Copyright 2015 Brad Dougherty <me@brad.is>; MIT License
+ * Copyright 2018 Brad Dougherty <me@brad.is>; MIT License
  */
 (function(root, document, iframe) {
     "use strict";
@@ -166,11 +166,13 @@
             }
             try {
                 element[fn.request]();
-                setTimeout(function() {
-                    if (!document[fn.element]) {
-                        callOnError(iframe ? "not_enabled" : "not_allowed", element);
-                    }
-                }, 100);
+                if (navigator.userAgent.indexOf("Safari") > -1) {
+                    setTimeout(function() {
+                        if (!document[fn.element]) {
+                            callOnError(iframe ? "not_enabled" : "not_allowed", element);
+                        }
+                    }, 100);
+                }
             } catch (err) {
                 callOnError("not_enabled", element);
             }
