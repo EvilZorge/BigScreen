@@ -270,7 +270,12 @@
 		exit: function() {
 			// Remove the resize hack here if exit is called manually, so it doesn't fire twice.
 			removeWindowResizeHack();
-			document[fn.exit]();
+			try {
+				document[fn.exit]();
+			}
+			catch (err) {
+				callOnError('not_enabled');
+			}
 		},
 		// ### toggle
 		// Shortcut function if you only plan on putting one element into full screen.

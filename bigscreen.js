@@ -1,7 +1,7 @@
 /*! bigscreen
- * v2.0.5 - 2018-04-08
+ * v2.0.5 - 2019-03-12
  * 
- * Copyright 2018 Brad Dougherty <me@brad.is>; MIT License
+ * Copyright 2019 Brad Dougherty <me@brad.is>; MIT License
  */
 (function(root, document, iframe) {
     "use strict";
@@ -179,7 +179,11 @@
         },
         exit: function() {
             removeWindowResizeHack();
-            document[fn.exit]();
+            try {
+                document[fn.exit]();
+            } catch (err) {
+                callOnError("not_enabled");
+            }
         },
         toggle: function(element, enterCallback, exitCallback, errorCallback) {
             if (bigscreen.element) {
