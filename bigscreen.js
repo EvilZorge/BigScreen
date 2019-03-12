@@ -166,7 +166,8 @@
             }
             try {
                 element[fn.request]();
-                if (navigator.userAgent.indexOf("Safari") > -1) {
+                var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+                if (isSafari) {
                     setTimeout(function() {
                         if (!document[fn.element]) {
                             callOnError(iframe ? "not_enabled" : "not_allowed", element);

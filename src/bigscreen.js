@@ -253,7 +253,8 @@
 				// If there's no element after 100ms, it didn't work. This check is for Safari 5.1
 				// which fails to fire a `webkitfullscreenerror` if the request wasn't from a user
 				// action.
-				if(navigator.userAgent.indexOf('Safari') > -1) {
+				var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+				if(isSafari) {
 					setTimeout(function() {
 						if (!document[fn.element]) {
 							callOnError(iframe ? 'not_enabled' : 'not_allowed', element);
